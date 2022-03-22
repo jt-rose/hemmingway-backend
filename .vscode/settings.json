@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/73c1747b-b1b6-407b-b031-ad2d45bdafef/resourceGroups/appsvc_windows_centralus2/providers/Microsoft.Web/sites/hemmingway-server",
+  "appService.deploySubpath": "publish"
+}

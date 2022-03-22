@@ -1,4 +1,19 @@
+// set up policy name for cors
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+// specify approved cors endpoints
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.WithOrigins("http://localhost:3000",
+                                              "https://hemmingway-frontend.vercel.app");
+                      });
+});
+
 
 builder.Services
     .AddGraphQLServer()
@@ -15,6 +30,9 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection();
+
+// enable cors
+app.UseCors(MyAllowSpecificOrigins);
 
 // app.UseAuthorization();
 
