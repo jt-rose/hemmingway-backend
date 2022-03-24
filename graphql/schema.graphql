@@ -51,4 +51,5 @@ type Exercise {
     calories: Int!
     created_at: DateTime!
     updated_at: DateTime!
+    user: User! @belongsTo
 }
