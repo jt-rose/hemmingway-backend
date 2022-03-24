@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Meal::class);
     }
+
+    public function sleep_habits()
+    {
+        return $this->hasMany(SleepHabit::class);
+    }
 }
