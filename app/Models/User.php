@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(SleepHabit::class);
     }
+
+    public function moods()
+    {
+        return $this->hasMany(Mood::class);
+    }
 }
