@@ -1,0 +1,21 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+type Exercise {
+    id: ID!
+    name: String!
+    date_of_exercise: Date!
+    minutes: Int!
+    calories: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+    user: User! @belongsTo
+}
+
+extend type Query {
+    exercise(id: ID! @eq): Exercise @find
+    exercises: [Exercise!]! @paginate(defaultCount: 10)
+}
