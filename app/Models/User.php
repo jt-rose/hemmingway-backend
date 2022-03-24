@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Mood::class);
     }
+
+    public function competitions()
+    {
+        return $this->belongsToMany(Competition::class, 'competitions_users', 'user_id', 'competition_id')->withPivot('current_amount', 'order_finished', 'comment');;
+    }
 }
