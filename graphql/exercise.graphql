@@ -41,7 +41,7 @@ extend type Mutation {
         @guard
         @inject(context: "user.id", name: "input.user_id")
 
-    deleteExercise(id: Int): Boolean!
+    deleteExercise(id: ID!): Boolean!
         @guard
         @inject(context: "user.id", name: "user_id")
 }

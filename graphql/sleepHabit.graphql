@@ -1,0 +1,58 @@
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+enum SleepQuality {
+    POOR @enum(value: "poor")
+    DECENT @enum(value: "decent")
+    GOOD @enum(value: "good")
+}
+
+enum SleepAmount {
+    NONE @enum(value: "none")
+    FEW @enum(value: "few hours")
+    FULL @enum(value: "full")
+    EXTRA @enum(value: "extra")
+}
+
+type SleepHabit {
+    id: ID!
+    quality: SleepQuality!
+    amount: SleepAmount!
+    date_of_sleep: Date!
+    note: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    user_id: Int!
+    user: User! @belongsTo
+}
+
+input SleepHabitInput {
+    quality: SleepQuality!
+    amount: SleepAmount!
+    date_of_sleep: Date!
+    note: String
+}
+
+extend type Query {
+    sleepHabits: [SleepHabit!]!
+        @guard
+        @whereAuth(relation: "user")
+        @paginate(defaultCount: 10)
+}
+
+extend type Mutation {
+    createSleepHabit(input: SleepHabitInput! @spread): SleepHabit!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+        @create
+
+    updateSleephabit(id: ID!, input: SleepHabitInput!): SleepHabit!
+        @guard
+        @inject(context: "user.id", name: "input.user_id")
+
+    deleteSleepHabit(id: ID!): Boolean!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+}
