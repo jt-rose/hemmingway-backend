@@ -1,0 +1,64 @@
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+enum Stress_Level {
+    LOW
+    MODERATE
+    HIGH
+}
+
+enum Mood_Type {
+    HAPPY
+    MOTIVATED
+    SATISFIED
+    RELAXED
+    TIRED
+    FRUSTRATED
+    SAD
+    ANXIOUS
+}
+
+type Mood {
+    id: ID!
+    note: String
+    meditated: Boolean!
+    stress_level: Stress_Level!
+    mood_type: Mood_Type!
+    date_of_mood: Date!
+    created_at: DateTime!
+    updated_at: DateTime!
+    user_id: Int!
+    user: User! @belongsTo
+}
+
+input MoodInput {
+    note: String
+    meditated: Boolean!
+    stress_level: Stress_Level!
+    mood_type: Mood_Type!
+    date_of_mood: Date!
+}
+
+extend type Query {
+    moods: [Mood!]!
+        @guard
+        @whereAuth(relation: "user")
+        @paginate(defaultCount: 10)
+}
+
+extend type Mutation {
+    createMood(input: MoodInput @spread): Mood!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+        @create
+
+    updateMood(id: ID!, input: MoodInput!): Mood!
+        @guard
+        @inject(context: "user.id", name: "input.user_id")
+
+    deleteMood(id: ID!): Boolean!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+}

@@ -3,3 +3,4 @@
 #import auth.graphql
 #import sleepHabit.graphql
 #import meal.graphql
+#import mood.graphql
