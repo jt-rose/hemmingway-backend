@@ -1,5 +1,7 @@
 extend type Mutation {
     login(email: String!, password: String!, device: String!): String!
+
+    # jwt clientside tokens are being used, so logout will be handled clientside
 }
 
 extend type Query {
