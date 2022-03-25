@@ -1,0 +1,52 @@
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+enum MealCategory {
+    BREAKFAST @enum(value: "breakfast")
+    LUNCH @enum(value: "lunch")
+    DINNER @enum(value: "dinner")
+    SNACK @enum(value: "snack")
+}
+
+type Meal {
+    id: ID!
+    name: String!
+    date_of_meal: Date!
+    category: MealCategory!
+    calories: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+    user_id: Int!
+    user: User! @belongsTo
+}
+
+input MealInput {
+    name: String!
+    date_of_meal: Date!
+    category: MealCategory!
+    calories: Int!
+}
+
+extend type Query {
+    meals: [Meal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @paginate(defaultCount: 10)
+}
+
+extend type Mutation {
+    createMeal(input: MealInput! @spread): Meal!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+        @create
+
+    updateMeal(id: ID!, input: MealInput!): Meal!
+        @guard
+        @inject(context: "user.id", name: "input.user_id")
+
+    deleteMeal(id: ID!): Boolean!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+}
