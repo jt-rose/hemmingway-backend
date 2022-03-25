@@ -24,13 +24,22 @@ extend type Query {
         @paginate(defaultCount: 10)
 }
 
+input ExerciseInput {
+    name: String!
+    date_of_exercise: Date!
+    minutes: Int!
+    calories: Int!
+}
+
 extend type Mutation {
-    createExercise(
-        name: String!
-        date_of_exercise: Date!
-        minutes: Int!
-        calories: Int!
-    ): Exercise @guard @inject(context: "user.id", name: "user_id") @create
+    createExercise(input: ExerciseInput! @spread): Exercise
+        @guard
+        @inject(context: "user.id", name: "user_id")
+        @create
+
+    updateExercise(id: ID!, input: ExerciseInput!): Exercise
+        @guard
+        @inject(context: "user.id", name: "input.user_id")
 
     deleteExercise(id: Int): Boolean!
         @guard
