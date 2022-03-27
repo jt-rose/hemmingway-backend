@@ -1,0 +1,47 @@
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+
+enum GOAL_TYPE {
+    CALROIES
+    STEPS
+    DISTANCE
+}
+
+type PopGoal {
+    id: ID!
+    user_id: Int!
+    goal_amount: Int!
+    goal_type: GOAL_TYPE
+    date_of_goal: Date!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input PopGoalInput {
+    goal_amount: Int!
+    goal_type: GOAL_TYPE
+    date_of_goal: Date!
+}
+
+extends type Query {
+    pop_goals: [PopGoal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @paginate(defaultCount: 10)
+}
+
+extends type Mutation {
+    createPopGoal(): PopGoal!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+        @create
+
+    # update not needed
+
+    deletePopGoal(): Boolean!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+}
