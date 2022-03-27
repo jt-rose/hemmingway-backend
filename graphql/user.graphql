@@ -13,6 +13,14 @@ type User {
     moods: [Mood!]! @hasMany
     sleep_habits: [SleepHabit!]! @hasMany(relation: "sleepHabits")
     #competitions: [Competition!]! @hasMany
+    pop_goals: [PopGoal!]! @hasMany(relation: "popGoals")
+    weight_in_lbs: Int!
+    weight_goals: [WeightGoal!]!
+    daily_step_goals: [DailyStepsGoal!]!
+    daily_distance_goal: [DailyDistanceGoal!]!
+    # pop_goal: Int!
+    # pop_goal_type: POP_GOAL_TYPE!
+    # pop_goal_progress: Int!
 }
 
 extend type Query {
@@ -36,9 +44,15 @@ extend type Mutation {
         name: String! @rules(apply: ["unique:users"])
         email: String! @rules(apply: ["email", "unique:users"])
         password: String! @rules(apply: ["min:8"]) @hash
+        weight_in_lbs: Int!
+        daily_calorie_goal: Int!
     ): User! @create
 
     updateUser(id: ID!, name: String, email: String): User! @update
 
     deleteUser(id: ID!): User @guard @delete
+
+    setCalorieGoal(): User!
+
+    updateWeight(): User!
 }
