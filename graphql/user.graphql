@@ -12,7 +12,7 @@ type User {
     meals: [Meal!]! @hasMany
     moods: [Mood!]! @hasMany
     sleep_habits: [SleepHabit!]! @hasMany
-    competitions: [Competition!]! @hasMany
+    #competitions: [Competition!]! @hasMany
 }
 
 extend type Query {
