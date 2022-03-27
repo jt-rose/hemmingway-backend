@@ -9,6 +9,10 @@ type User {
     created_at: DateTime!
     updated_at: DateTime!
     exercises: [Exercise!]! @hasMany
+    meals: [Meal!]! @hasMany
+    moods: [Mood!]! @hasMany
+    sleep_habits: [SleepHabit!]! @hasMany
+    competitions: [Competition!]! @hasMany
 }
 
 extend type Query {
