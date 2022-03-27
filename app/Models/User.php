@@ -78,6 +78,11 @@ class User extends Authenticatable
         return $this->hasMany(DailyDistanceGoal::class);
     }
 
+    public function weightGoals()
+    {
+        return $this->hasMany(WeightGoal::class);
+    }
+
     public function popGoals()
     {
         return $this->hasMany(PopGoal::class);

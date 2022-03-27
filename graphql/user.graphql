@@ -16,7 +16,7 @@ type User {
     user_weights: [UserWeight!]! @hasMany(relation: "userWeights")
     pop_goals: [PopGoal!]! @hasMany(relation: "popGoals")
     #weight_in_lbs: Int!
-    weight_goals: [WeightGoal!]!
+    weight_goals: [WeightGoal!]! @hasMany(relation: "weightGoals")
     daily_steps_goals: [DailyStepsGoal!]! @hasMany(relation: "dailyStepsGoals")
     daily_distance_goals: [DailyDistanceGoal!]! @hasMany(relation: "dailyDistanceGoals")
     # pop_goal: Int!
