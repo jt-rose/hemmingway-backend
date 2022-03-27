@@ -1,0 +1,38 @@
+type DailyStepsGoal {
+    goal_start_date: Date!
+    # goal_end_date will be derived from  comparing other start dates
+    # if there is a goal with a later start date
+    # then that will be more current and can be used to calculate the end of this goal
+    daily_goal_in_steps: Int!
+    note: String
+    active: Boolean!
+}
+
+input DailyStepsGoalInput {
+    goal_start_date: Date!
+    daily_goal_in_steps: Int!
+    note: String
+    active: Boolean!
+}
+
+extends type Query {
+    daily_step_goals: [DailyStepsGoal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @paginate(defaultCount: 10)
+}
+
+extends type Mutation {
+    setDailyStepsGoal(input: DailyStepsGoalInput!): DailyStepsGoal!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+        @create
+
+    updateDailyStepsGoal(id: ID!, input: DailyStepsGoalInput!): DailyStepsGoal!
+        @guard
+        @inject(context: "user.id", name: "input.user_id")
+
+    deleteDailyStepsGoal(id: ID!): Boolean!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+}
