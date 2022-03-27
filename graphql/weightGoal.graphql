@@ -1,0 +1,40 @@
+type WeightGoal {
+    goal_start_date: Date!
+    # goal_end_date will be derived from  comparing other start dates
+    # if there is a goal with a later start date
+    # then that will be more current and can be used to calculate the end of this goal
+    goal_in_lbs: Int!
+    note: String
+    active: Boolean!
+    # if inactive, this will effectively turn off the tracker
+    # and treat the user as if they are in a kind of maintenance mode
+}
+
+input WeightGoalInput {
+    goal_start_date: Date!
+    goal_in_lbs: Int!
+    note: String
+    active: Boolean!
+}
+
+extends type Query {
+    weight_goals: [WeightGoal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @paginate(defaultCount: 10)
+}
+
+extends type Mutation {
+    setWeightGoal(input: WeightGoalInput!): WeightGoal!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+        @create
+
+    updateWeightGoal(id: ID!, input: WeightGoalInput!): WeightGoal!
+        @guard
+        @inject(context: "user.id", name: "input.user_id")
+
+    deleteWeightGoal(id: ID!): Boolean!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+}
