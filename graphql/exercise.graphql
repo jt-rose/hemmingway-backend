@@ -4,6 +4,9 @@ scalar DateTime
 
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
+# Exercise types will be hard-coded options on the frontend
+# but I will avoid turning these into enums for now
+
 type Exercise {
     id: ID!
     name: String!
