@@ -13,8 +13,9 @@ type User {
     moods: [Mood!]! @hasMany
     sleep_habits: [SleepHabit!]! @hasMany(relation: "sleepHabits")
     #competitions: [Competition!]! @hasMany
+    user_weights: [UserWeight!]! @hasMany(relation: "userWeights")
     pop_goals: [PopGoal!]! @hasMany(relation: "popGoals")
-    weight_in_lbs: Int!
+    #weight_in_lbs: Int!
     weight_goals: [WeightGoal!]!
     daily_steps_goals: [DailyStepsGoal!]! @hasMany(relation: "dailyStepsGoals")
     daily_distance_goals: [DailyDistanceGoal!]! @hasMany(relation: "dailyDistanceGoals")

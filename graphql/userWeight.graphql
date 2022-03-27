@@ -1,0 +1,42 @@
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+
+type UserWeight {
+    id: ID!
+    user_id: Int!
+    weight_in_lbs: Int!
+    date_of_weight: Date!
+    note: String # nullable
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input UserWeightInput {
+    weight_in_lbs: Int!
+    date_of_weight: Date!
+    note: String # nullable
+}
+
+extends type Query {
+    weight_history: [UserWeight!]!
+        @guard
+        @whereAuth(relation: "user")
+        @paginate(defaultCount: 10)
+}
+extends type Mutation {
+    setUserWeight(input: UserWeightInput!): UserWeight!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+        @create
+
+    updateUserWeight(id: ID!, input: UserWeightInput!): UserWeight!
+        @guard
+        @inject(context: "user.id", name: "input.user_id")
+
+    deleteUserWeight(id: ID!): Boolean!
+        @guard
+        @inject(context: "user.id", name: "user_id")
+}

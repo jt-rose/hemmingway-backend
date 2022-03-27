@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Mood::class);
     }
 
+    public function userWeights()
+    {
+        return $this->hasMany(UserWeight::class);
+    }
+
     public function dailyStepsGoals()
     {
         return $this->hasMany(DailyStepsGoal::class);
