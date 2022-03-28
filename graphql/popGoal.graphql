@@ -26,14 +26,14 @@ input PopGoalInput {
     date_of_goal: Date!
 }
 
-extends type Query {
+extend type Query {
     pop_goals: [PopGoal!]!
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
 }
 
-extends type Mutation {
+extend type Mutation {
     createPopGoal(): PopGoal!
         @guard
         @inject(context: "user.id", name: "user_id")

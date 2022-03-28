@@ -3,7 +3,6 @@ scalar DateTime
 
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
-
 type UserWeight {
     id: ID!
     user_id: Int!
@@ -20,13 +19,13 @@ input UserWeightInput {
     note: String # nullable
 }
 
-extends type Query {
+extend type Query {
     weight_history: [UserWeight!]!
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
 }
-extends type Mutation {
+extend type Mutation {
     setUserWeight(input: UserWeightInput!): UserWeight!
         @guard
         @inject(context: "user.id", name: "user_id")

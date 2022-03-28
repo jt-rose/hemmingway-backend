@@ -15,14 +15,14 @@ input DailyStepsGoalInput {
     active: Boolean!
 }
 
-extends type Query {
+extend type Query {
     daily_step_goals: [DailyStepsGoal!]!
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
 }
 
-extends type Mutation {
+extend type Mutation {
     setDailyStepsGoal(input: DailyStepsGoalInput!): DailyStepsGoal!
         @guard
         @inject(context: "user.id", name: "user_id")

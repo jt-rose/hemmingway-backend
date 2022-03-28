@@ -17,14 +17,14 @@ input WeightGoalInput {
     active: Boolean!
 }
 
-extends type Query {
+extend type Query {
     weight_goals: [WeightGoal!]!
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
 }
 
-extends type Mutation {
+extend type Mutation {
     setWeightGoal(input: WeightGoalInput!): WeightGoal!
         @guard
         @inject(context: "user.id", name: "user_id")
