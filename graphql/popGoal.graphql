@@ -3,7 +3,6 @@ scalar DateTime
 
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
-
 enum GOAL_TYPE {
     CALROIES
     STEPS
@@ -34,14 +33,14 @@ extend type Query {
 }
 
 extend type Mutation {
-    createPopGoal(): PopGoal!
+    createPopGoal(input: PopGoalInput!): PopGoal!
         @guard
         @inject(context: "user.id", name: "user_id")
         @create
 
     # update not needed
 
-    deletePopGoal(): Boolean!
+    deletePopGoal(id: ID!): Boolean!
         @guard
         @inject(context: "user.id", name: "user_id")
 }
