@@ -26,7 +26,7 @@ extend type Query {
         @paginate(defaultCount: 10)
 }
 extend type Mutation {
-    setUserWeight(input: UserWeightInput!): UserWeight!
+    setUserWeight(input: UserWeightInput! @spread): UserWeight!
         @guard
         @inject(context: "user.id", name: "user_id")
         @create
