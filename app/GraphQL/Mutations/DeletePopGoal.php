@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Models\DailyPopGoal;
+use App\Models\PopGoal;
 use Illuminate\Validation\ValidationException;
 
 class DeletePopGoal
