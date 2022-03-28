@@ -48,7 +48,7 @@ extend type Mutation {
         @inject(context: "user.id", name: "user_id")
         @create
 
-    updateSleephabit(id: ID!, input: SleepHabitInput!): SleepHabit!
+    updateSleepHabit(id: ID!, input: SleepHabitInput!): SleepHabit!
         @guard
         @inject(context: "user.id", name: "input.user_id")
 
