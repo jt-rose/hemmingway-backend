@@ -27,15 +27,19 @@ extend type Query {
 }
 
 extend type Mutation {
-    setDailyDistanceGoal(input: DailyDistanceGoalInput!): DailyDistanceGoal!
+    setDailyDistanceGoal(
+        input: DailyDistanceGoalInput! @spread
+    ): DailyDistanceGoal!
         @guard
         @inject(context: "user.id", name: "user_id")
         @create
 
     updateDailyDistanceGoal(
         id: ID!
-        input: DailyStepsGoalInput!
-    ): DailyStepsGoal! @guard @inject(context: "user.id", name: "input.user_id")
+        input: DailyDistanceGoalInput!
+    ): DailyDistanceGoal!
+        @guard
+        @inject(context: "user.id", name: "input.user_id")
 
     deleteDailyDistanceGoal(id: ID!): Boolean!
         @guard

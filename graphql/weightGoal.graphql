@@ -29,7 +29,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    setWeightGoal(input: WeightGoalInput!): WeightGoal!
+    setWeightGoal(input: WeightGoalInput! @spread): WeightGoal!
         @guard
         @inject(context: "user.id", name: "user_id")
         @create
