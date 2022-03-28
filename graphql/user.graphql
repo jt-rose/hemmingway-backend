@@ -18,7 +18,8 @@ type User {
     #weight_in_lbs: Int!
     weight_goals: [WeightGoal!]! @hasMany(relation: "weightGoals")
     daily_steps_goals: [DailyStepsGoal!]! @hasMany(relation: "dailyStepsGoals")
-    daily_distance_goals: [DailyDistanceGoal!]! @hasMany(relation: "dailyDistanceGoals")
+    daily_distance_goals: [DailyDistanceGoal!]!
+        @hasMany(relation: "dailyDistanceGoals")
     # pop_goal: Int!
     # pop_goal_type: POP_GOAL_TYPE!
     # pop_goal_progress: Int!
@@ -52,8 +53,4 @@ extend type Mutation {
     updateUser(id: ID!, name: String, email: String): User! @update
 
     deleteUser(id: ID!): User @guard @delete
-
-    setCalorieGoal(): User!
-
-    updateWeight(): User!
 }
