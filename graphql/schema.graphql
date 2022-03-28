@@ -4,3 +4,9 @@
 #import sleepHabit.graphql
 #import meal.graphql
 #import mood.graphql
+
+#import dailyDistanceGoal.graphql
+#import dailyStepsGoal.graphql
+#import popGoal.graphql
+#import weightGoal.graphql
+#import userWeight.graphql
