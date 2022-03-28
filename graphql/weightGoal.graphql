@@ -1,4 +1,8 @@
 type WeightGoal {
+    id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    user_id: Int!
     goal_start_date: Date!
     # goal_end_date will be derived from  comparing other start dates
     # if there is a goal with a later start date
