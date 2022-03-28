@@ -10,4 +10,9 @@ class DailyDistanceGoal extends Model
     use HasFactory;
 
     protected $fillable = ['goal_start_date', 'daily_goal_in_miles','note', 'active'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

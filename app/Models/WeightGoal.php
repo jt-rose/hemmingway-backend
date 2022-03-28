@@ -10,4 +10,9 @@ class WeightGoal extends Model
     use HasFactory;
 
     protected $fillable = ['goal_start_date', 'goal_in_lbs', 'active', 'note'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

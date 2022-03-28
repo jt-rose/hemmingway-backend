@@ -10,4 +10,9 @@ class PopGoal extends Model
     use HasFactory;
 
     protected $fillable = ['goal_amount', 'goal_type','date_of_goal'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
