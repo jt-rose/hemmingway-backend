@@ -40,6 +40,11 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+
+    sleepHabitsByDate(date_of_sleep: Date! @where): [SleepHabit!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
 }
 
 extend type Mutation {

@@ -46,6 +46,11 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+
+    moodByDate(date_of_mood: Date! @where): [Mood!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
 }
 
 extend type Mutation {

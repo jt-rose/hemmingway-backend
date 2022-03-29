@@ -30,6 +30,11 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+
+    popGoalsByDate(date_of_pop_goal: Date! @where): [PopGoal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
 }
 
 extend type Mutation {

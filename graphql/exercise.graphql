@@ -27,6 +27,11 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+
+    exercisesByDate(date_of_exercise: Date! @where): [Exercise!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
 }
 
 input ExerciseInput {

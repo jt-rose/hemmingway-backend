@@ -34,6 +34,11 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+
+    mealsByDate(date_of_meal: Date! @where): [Meal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
 }
 
 extend type Mutation {
