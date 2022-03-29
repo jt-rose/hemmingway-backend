@@ -39,6 +39,8 @@ input ExerciseInput {
     date_of_exercise: Date!
     minutes: Int!
     calories: Int!
+    steps: Int
+    distance_in_miles: Int
 }
 
 extend type Mutation {

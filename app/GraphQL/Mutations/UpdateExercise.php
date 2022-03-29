@@ -23,6 +23,8 @@ class UpdateExercise
         $myExercise->minutes = $args['input']['minutes'];
         $myExercise->calories = $args['input']['calories'];
         $myExercise->date_of_exercise = $args['input']['date_of_exercise'];
+        $myExercise->steps = $args['input']['steps'];
+        $myExercise->distance_in_miles = $args['input']['distance_in_miles'];
 
         $myExercise->save();
 
