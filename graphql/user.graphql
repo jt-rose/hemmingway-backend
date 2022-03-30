@@ -56,16 +56,12 @@ extend type Mutation {
     ): User! @create
 
     updateUser(
-        id: ID!
         name: String
         email: String
         gender: GENDER!
         birthday: Date!
         height_in_inches: Int!
-    ): User! @guard @inject(context: "user.id", name: "user_id") @update
+    ): User! @guard @inject(context: "user.id", name: "id") @update
 
-    deleteUser(id: ID!): User
-        @guard
-        @inject(context: "user.id", name: "user_id")
-        @delete
+    deleteUser: User @guard @inject(context: "user.id", name: "id") @delete
 }

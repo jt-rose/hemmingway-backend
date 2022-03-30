@@ -14,10 +14,10 @@ class UpdateUser
     public function __invoke($_, array $args)
     {
         // TODO implement the resolver
-        $myUser = User::where(['id' => $args['user_id']])->first();
+        $myUser = User::where(['id' => $args['id']])->first();
         if (! $myUser ) {
             throw ValidationException::withMessages([
-                'user_id' => ['No matching record for this user']
+                'id' => ['No matching record for this user']
             ]);
         }
         $myUser->name = $args['name'];

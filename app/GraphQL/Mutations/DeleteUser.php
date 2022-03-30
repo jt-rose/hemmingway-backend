@@ -14,10 +14,10 @@ class DeleteUser
     public function __invoke($_, array $args)
     {
         // TODO implement the resolver
-        $myUser = User::where(['id' => $args['user_id']])->delete();
+        $myUser = User::where(['id' => $args['id']])->delete();
         if (! $myUser ) {
             throw ValidationException::withMessages([
-                'user_id' => ['No matching record for this user']
+                'id' => ['No matching record for this user']
             ]);
         }
         return true;
