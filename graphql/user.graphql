@@ -61,7 +61,7 @@ extend type Mutation {
         gender: GENDER!
         birthday: Date!
         height_in_inches: Int!
-    ): User! @guard @inject(context: "user.id", name: "id") @update
+    ): User! @guard @inject(context: "user.id", name: "id")
 
-    deleteUser: User @guard @inject(context: "user.id", name: "id") @delete
+    deleteUser: User @guard @inject(context: "user.id", name: "id")
 }
