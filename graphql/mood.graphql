@@ -41,6 +41,11 @@ input MoodInput {
     date_of_mood: Date!
 }
 
+input DateRange {
+    from: Date!
+    to: Date!
+}
+
 extend type Query {
     moods: [Mood!]!
         @guard
@@ -48,6 +53,11 @@ extend type Query {
         @paginate(defaultCount: 10)
 
     moodByDate(date_of_mood: Date! @where): [Mood!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+
+    moodsBetweenDates(date_of_mood: DateRange! @whereBetween): [Mood!]!
         @guard
         @whereAuth(relation: "user")
         @all

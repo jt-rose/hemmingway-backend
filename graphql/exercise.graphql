@@ -21,6 +21,11 @@ type Exercise {
     user: User! @belongsTo
 }
 
+input DateRange {
+    from: Date!
+    to: Date!
+}
+
 extend type Query {
     # exercise(id: ID! @eq): Exercise @guard @find
     exercises: [Exercise!]!
@@ -32,6 +37,10 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @all
+
+    exercisesBetweenDates(
+        date_of_exercise: DateRange! @whereBetween
+    ): [Exercise!]! @guard @whereAuth(relation: "user") @all
 }
 
 input ExerciseInput {

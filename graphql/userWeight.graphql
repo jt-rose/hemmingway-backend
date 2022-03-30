@@ -19,8 +19,17 @@ input UserWeightInput {
     note: String # nullable
 }
 
+input DateRange {
+    from: Date!
+    to: Date!
+}
+
 extend type Query {
     weight_history: [UserWeight!]! @guard @whereAuth(relation: "user") @all
+
+    weightBetweenDates(
+        date_of_weight: DateRange! @whereBetween
+    ): [UserWeight!]! @guard @whereAuth(relation: "user") @all
 }
 extend type Mutation {
     setUserWeight(input: UserWeightInput! @spread): UserWeight!

@@ -25,6 +25,11 @@ input PopGoalInput {
     date_of_goal: Date!
 }
 
+input DateRange {
+    from: Date!
+    to: Date!
+}
+
 extend type Query {
     pop_goals: [PopGoal!]!
         @guard
@@ -32,6 +37,11 @@ extend type Query {
         @paginate(defaultCount: 10)
 
     popGoalsByDate(date_of_goal: Date! @where): [PopGoal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+
+    popGoalsBetweenDates(date_of_goal: DateRange! @whereBetween): [PopGoal!]!
         @guard
         @whereAuth(relation: "user")
         @all

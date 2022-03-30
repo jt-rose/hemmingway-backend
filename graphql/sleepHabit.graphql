@@ -35,6 +35,11 @@ input SleepHabitInput {
     note: String
 }
 
+input DateRange {
+    from: Date!
+    to: Date!
+}
+
 extend type Query {
     sleepHabits: [SleepHabit!]!
         @guard
@@ -45,6 +50,10 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @all
+
+    sleepHabitsBetweenDates(
+        date_of_sleep: DateRange! @whereBetween
+    ): [SleepHabit!]! @guard @whereAuth(relation: "user") @all
 }
 
 extend type Mutation {

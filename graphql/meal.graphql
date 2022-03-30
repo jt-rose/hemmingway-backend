@@ -29,6 +29,11 @@ input MealInput {
     calories: Int!
 }
 
+input DateRange {
+    from: Date!
+    to: Date!
+}
+
 extend type Query {
     meals: [Meal!]!
         @guard
@@ -36,6 +41,11 @@ extend type Query {
         @paginate(defaultCount: 10)
 
     mealsByDate(date_of_meal: Date! @where): [Meal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+
+    mealsBetweenDates(date_of_meal: DateRange! @whereBetween): [Meal!]!
         @guard
         @whereAuth(relation: "user")
         @all

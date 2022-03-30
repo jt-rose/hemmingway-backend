@@ -19,11 +19,20 @@ input DailyStepsGoalInput {
     active: Boolean!
 }
 
+input DateRange {
+    from: Date!
+    to: Date!
+}
+
 extend type Query {
     daily_steps_goals: [DailyStepsGoal!]!
         @guard
         @whereAuth(relation: "user")
         @all
+
+    stepsGoalsBetweenDates(
+        goal_start_date: DateRange! @whereBetween
+    ): [DailyStepsGoal!]! @guard @whereAuth(relation: "user") @all
 }
 
 extend type Mutation {

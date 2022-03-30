@@ -21,8 +21,17 @@ input WeightGoalInput {
     active: Boolean!
 }
 
+input DateRange {
+    from: Date!
+    to: Date!
+}
+
 extend type Query {
     weight_goals: [WeightGoal!]! @guard @whereAuth(relation: "user") @all
+
+    weightGoalsBetweenDates(
+        goal_start_date: DateRange! @whereBetween
+    ): [WeightGoal!]! @guard @whereAuth(relation: "user") @all
 }
 
 extend type Mutation {
