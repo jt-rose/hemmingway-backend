@@ -6,7 +6,7 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 enum GOAL_TYPE {
     CALORIES
     STEPS
-    MILES
+    DISTANCE
 }
 
 type PopGoal {
