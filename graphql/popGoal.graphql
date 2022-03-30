@@ -4,7 +4,7 @@ scalar DateTime
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 enum GOAL_TYPE {
-    CALROIES
+    CALORIES
     STEPS
     DISTANCE
 }
