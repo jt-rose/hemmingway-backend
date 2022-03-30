@@ -29,10 +29,15 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "goal_start_date", direction: DESC)
 
     distanceGoalsBetweenDates(
         goal_start_date: DateRange! @whereBetween
-    ): [DailyDistanceGoal!]! @guard @whereAuth(relation: "user") @all
+    ): [DailyDistanceGoal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+        @orderBy(column: "goal_start_date", direction: DESC)
 }
 
 extend type Mutation {

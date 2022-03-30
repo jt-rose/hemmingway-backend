@@ -39,16 +39,19 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+        @orderBy(column: "date_of_meal", direction: DESC)
 
     mealsByDate(date_of_meal: Date! @where): [Meal!]!
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "date_of_meal", direction: DESC)
 
     mealsBetweenDates(date_of_meal: DateRange! @whereBetween): [Meal!]!
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "date_of_meal", direction: DESC)
 }
 
 extend type Mutation {

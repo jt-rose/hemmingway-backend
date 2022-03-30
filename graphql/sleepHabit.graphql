@@ -45,15 +45,21 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+        @orderBy(column: "date_of_sleep", direction: DESC)
 
     sleepHabitsByDate(date_of_sleep: Date! @where): [SleepHabit!]!
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "date_of_sleep", direction: DESC)
 
     sleepHabitsBetweenDates(
         date_of_sleep: DateRange! @whereBetween
-    ): [SleepHabit!]! @guard @whereAuth(relation: "user") @all
+    ): [SleepHabit!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+        @orderBy(column: "date_of_sleep", direction: DESC)
 }
 
 extend type Mutation {

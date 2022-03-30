@@ -32,15 +32,21 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+        @orderBy(column: "date_of_exercise", direction: DESC)
 
     exercisesByDate(date_of_exercise: Date! @where): [Exercise!]!
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "date_of_exercise", direction: DESC)
 
     exercisesBetweenDates(
         date_of_exercise: DateRange! @whereBetween
-    ): [Exercise!]! @guard @whereAuth(relation: "user") @all
+    ): [Exercise!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+        @orderBy(column: "date_of_exercise", direction: DESC)
 }
 
 input ExerciseInput {

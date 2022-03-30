@@ -51,16 +51,19 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+        @orderBy(column: "date_of_mood", direction: DESC)
 
     moodByDate(date_of_mood: Date! @where): [Mood!]!
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "date_of_mood", direction: DESC)
 
     moodsBetweenDates(date_of_mood: DateRange! @whereBetween): [Mood!]!
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "date_of_mood", direction: DESC)
 }
 
 extend type Mutation {

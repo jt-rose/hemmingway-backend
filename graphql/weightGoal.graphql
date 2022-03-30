@@ -27,11 +27,19 @@ input DateRange {
 }
 
 extend type Query {
-    weight_goals: [WeightGoal!]! @guard @whereAuth(relation: "user") @all
+    weight_goals: [WeightGoal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+        @orderBy(column: "goal_start_date", direction: DESC)
 
     weightGoalsBetweenDates(
         goal_start_date: DateRange! @whereBetween
-    ): [WeightGoal!]! @guard @whereAuth(relation: "user") @all
+    ): [WeightGoal!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+        @orderBy(column: "goal_start_date", direction: DESC)
 }
 
 extend type Mutation {

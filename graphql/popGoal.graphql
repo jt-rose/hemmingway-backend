@@ -35,16 +35,19 @@ extend type Query {
         @guard
         @whereAuth(relation: "user")
         @paginate(defaultCount: 10)
+        @orderBy(column: "date_of_goal", direction: DESC)
 
     popGoalsByDate(date_of_goal: Date! @where): [PopGoal!]!
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "date_of_goal", direction: DESC)
 
     popGoalsBetweenDates(date_of_goal: DateRange! @whereBetween): [PopGoal!]!
         @guard
         @whereAuth(relation: "user")
         @all
+        @orderBy(column: "date_of_goal", direction: DESC)
 }
 
 extend type Mutation {

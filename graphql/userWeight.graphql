@@ -25,11 +25,19 @@ input DateRange {
 }
 
 extend type Query {
-    weight_history: [UserWeight!]! @guard @whereAuth(relation: "user") @all
+    weight_history: [UserWeight!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+        @orderBy(column: "date_of_weight", direction: DESC)
 
     weightBetweenDates(
         date_of_weight: DateRange! @whereBetween
-    ): [UserWeight!]! @guard @whereAuth(relation: "user") @all
+    ): [UserWeight!]!
+        @guard
+        @whereAuth(relation: "user")
+        @all
+        @orderBy(column: "date_of_weight", direction: DESC)
 }
 extend type Mutation {
     setUserWeight(input: UserWeightInput! @spread): UserWeight!
