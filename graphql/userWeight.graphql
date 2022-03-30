@@ -38,6 +38,12 @@ extend type Query {
         @whereAuth(relation: "user")
         @all
         @orderBy(column: "date_of_weight", direction: DESC)
+
+    currentUserWeight: UserWeight
+        @guard
+        @whereAuth(relation: "user")
+        @orderBy(column: "date_of_weight", direction: DESC)
+        @first
 }
 extend type Mutation {
     setUserWeight(input: UserWeightInput! @spread): UserWeight!

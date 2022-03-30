@@ -38,6 +38,12 @@ extend type Query {
         @whereAuth(relation: "user")
         @all
         @orderBy(column: "goal_start_date", direction: DESC)
+
+    currentStepsGoal: DailyStepsGoal
+        @guard
+        @whereAuth(relation: "user")
+        @orderBy(column: "goal_start_date", direction: DESC)
+        @first
 }
 
 extend type Mutation {

@@ -48,6 +48,12 @@ extend type Query {
         @whereAuth(relation: "user")
         @all
         @orderBy(column: "date_of_goal", direction: DESC)
+
+    currentPopGoal: PopGoal
+        @guard
+        @whereAuth(relation: "user")
+        @orderBy(column: "date_of_goal", direction: DESC)
+        @first
 }
 
 extend type Mutation {
