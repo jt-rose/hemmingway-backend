@@ -23,7 +23,7 @@ extend type Query {
     daily_steps_goals: [DailyStepsGoal!]!
         @guard
         @whereAuth(relation: "user")
-        @paginate(defaultCount: 10)
+        @all
 }
 
 extend type Mutation {

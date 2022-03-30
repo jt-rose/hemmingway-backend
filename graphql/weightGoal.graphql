@@ -22,10 +22,7 @@ input WeightGoalInput {
 }
 
 extend type Query {
-    weight_goals: [WeightGoal!]!
-        @guard
-        @whereAuth(relation: "user")
-        @paginate(defaultCount: 10)
+    weight_goals: [WeightGoal!]! @guard @whereAuth(relation: "user") @all
 }
 
 extend type Mutation {
