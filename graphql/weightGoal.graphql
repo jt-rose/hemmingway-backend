@@ -1,3 +1,9 @@
+enum GOAL_PACE {
+    STRONG
+    MODERATE
+    LIGHT
+}
+
 type WeightGoal {
     id: ID!
     created_at: DateTime!
@@ -10,6 +16,7 @@ type WeightGoal {
     goal_in_lbs: Int!
     note: String
     active: Boolean!
+    goal_pace: GOAL_PACE!
     # if inactive, this will effectively turn off the tracker
     # and treat the user as if they are in a kind of maintenance mode
 }
@@ -19,6 +26,7 @@ input WeightGoalInput {
     goal_in_lbs: Int!
     note: String
     active: Boolean!
+    goal_pace: GOAL_PACE!
 }
 
 input DateRange {

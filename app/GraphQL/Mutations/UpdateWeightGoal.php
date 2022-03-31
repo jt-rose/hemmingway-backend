@@ -24,6 +24,7 @@ class UpdateWeightGoal
         $myWeightGoal->goal_start_date = $args['input']['goal_start_date'];
         $myWeightGoal->note = $args['input']['note'];
         $myWeightGoal->active = $args['input']['active'];
+        $myWeightGoal->goal_pace = $args['input']['goal_pace'];
 
         $myWeightGoal->save();
 

@@ -9,7 +9,7 @@ class WeightGoal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['goal_start_date', 'goal_in_lbs', 'active', 'note'];
+    protected $fillable = ['goal_start_date', 'goal_in_lbs', 'active', 'note', 'goal_pace'];
 
     public function user()
     {
